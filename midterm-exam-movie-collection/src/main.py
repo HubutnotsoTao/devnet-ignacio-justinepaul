@@ -58,9 +58,12 @@ def add_movie(movie_list):
 def view_movies(movie_list):
     # loop through and print every movie
     # handle empty list
-    print("Movie list")
-    for m in movie_list:
-        print(m)
+    print("=== Movie list ===")
+    if len(movie_list) != 0:
+        for m in enumerate(movie_list):
+            print(f" {m}")
+    else:
+        print("Movie list is empty! Please add movies")
     return display_menu()
     
 
@@ -69,7 +72,15 @@ def count_watched_unwatched(movie_list):
     # loop through the list
     # count Watched vs Unwatched
     # return both counts
-    print("Movie watchlist")
+    print("=== Movie watched count ===")
+    if len(movie_list) != 0:
+        pending_watch_count = [x.split("-") for x in movie_list]
+        watched_count = pending_watch_count.count("watched")
+        unwatched_count = pending_watch_count.count("unwatched")
+        print(f"Number of watched movies: {watched_count}\nNumber of unwatched movies: {unwatched_count}")
+    else:
+        print("Movie list is empty! Please add movies")
+    return display_menu()
 
 
 def find_movie(movie_list):
@@ -77,7 +88,9 @@ def find_movie(movie_list):
     # search the list
     # search should be case-insensitive
     # print the result or "Movie not found."
-    print("Find a movie")
+    print("=== Find a movie ===")
+    query_movie = input("Search for a movie: ").strip
+    pending_find = [s.lower(query_movie) for s in movie_list]
 
 
 def main():
