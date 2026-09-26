@@ -5,31 +5,31 @@ Student: Ignacio, Justine Paul T.
 
 movies = []
 movie_list = []
+user_choice = 0
 
 
 def display_menu():
     # print the menu
     # return the user's choice
+    global user_choice
     print("=== Movie Collection Manager ===\n1. Add a movie\n2. View all movies\n3. Count watched vs unwatched\n4. Find a movie\n5. Exit")
     user_choice = int(input("Choose an option: "))
+    match user_choice:
+        case 1:
+            add_movie(movie_list)
 
-    while True:
-        match user_choice:
-            case 1:
-                add_movie(movie_list)
+        case 2:
+            view_movies(movie_list)
 
-            case 2:
-                view_movies(movie_list)
+        case 3:
+            count_watched_unwatched(movie_list)
 
-            case 3:
-                count_watched_unwatched(movie_list)
+        case 4:
+            find_movie(movie_list)
 
-            case 4:
-                find_movie(movie_list)
-
-            case 5:
-                print("See you next time!")
-                return False
+        case 5:
+            print("See you next time!")
+    return user_choice
 
 
 def add_movie(movie_list):
@@ -50,13 +50,9 @@ def add_movie(movie_list):
 
     new_movie = "-".join(pending_movie)
     movie_list.append(new_movie)
-
     print(f"Successfully added {new_movie}")
-    movie_list.append(new_movie)
 
-    display_menu()
-    return 
-    
+    return display_menu()
     
 
 def view_movies(movie_list):
@@ -65,7 +61,7 @@ def view_movies(movie_list):
     print("Movie list")
     for m in movie_list:
         print(m)
-    return
+    return display_menu()
     
 
 
@@ -87,7 +83,8 @@ def find_movie(movie_list):
 def main():
     # create the main menu loop
     # call the appropriate function based on the user's choice
-    display_menu()
+    while user_choice != 5:
+        display_menu()
 
 
 
