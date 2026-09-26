@@ -17,7 +17,6 @@ def display_menu():
         match user_choice:
             case 1:
                 add_movie(movie_list)
-                return True
 
             case 2:
                 view_movies(movie_list)
@@ -53,13 +52,20 @@ def add_movie(movie_list):
     movie_list.append(new_movie)
 
     print(f"Successfully added {new_movie}")
-    return movie_list.append(new_movie)
+    movie_list.append(new_movie)
+
+    display_menu()
+    return 
+    
     
 
 def view_movies(movie_list):
     # loop through and print every movie
     # handle empty list
     print("Movie list")
+    for m in movie_list:
+        print(m)
+    return
     
 
 
