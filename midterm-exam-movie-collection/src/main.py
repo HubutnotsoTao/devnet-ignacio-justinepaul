@@ -4,6 +4,7 @@ Student: Ignacio, Justine Paul T.
 """
 
 movies = []
+movie_list = []
 
 
 def display_menu():
@@ -15,16 +16,17 @@ def display_menu():
     while True:
         match user_choice:
             case 1:
-                add_movie()
+                add_movie(movie_list)
+                return True
 
             case 2:
-                view_movies()
+                view_movies(movie_list)
 
             case 3:
-                count_watched_unwatched()
+                count_watched_unwatched(movie_list)
 
             case 4:
-                find_movie()
+                find_movie(movie_list)
 
             case 5:
                 print("See you next time!")
@@ -35,9 +37,24 @@ def add_movie(movie_list):
     # ask for title, director, and status
     # build the movie string
     # add it to the list
-    print("Add a movie")
-    
+    pending_movie = []
+    print("Add a new movie\nExample: Inception - Christopher Nolan - Watched")
 
+    new_movie_title = input("Enter movie title: ")
+    pending_movie.append(new_movie_title)
+
+    new_movie_director = input("Enter director: ")
+    pending_movie.append(new_movie_director)
+
+    new_movie_status = input("Enter status: ")
+    pending_movie.append(new_movie_status)
+
+    new_movie = "-".join(pending_movie)
+    movie_list.append(new_movie)
+
+    print(f"Successfully added {new_movie}")
+    return movie_list.append(new_movie)
+    
 
 def view_movies(movie_list):
     # loop through and print every movie
