@@ -31,7 +31,10 @@ Write at least one working example below that you
 came up with yourself — not copied from class.
 """
 
-# --- your code example goes here ---
+students_names = ["Hannah","Camille","Jamille","Jia","Justine"]
+
+for i in students_names:
+    print(i)
 
 
 """
