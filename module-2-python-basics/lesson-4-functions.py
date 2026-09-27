@@ -72,9 +72,12 @@ main_loop()
 ============================================
 A MISTAKE I MADE (or one I want to avoid)
 ============================================
+I once created looping functions that created unintentional recursive functions that broke my code
+and I usually use parameters incorrectly.
 
 ============================================
 HOW THIS CONNECTS TO SOMETHING ELSE
 ============================================
-
+Functions is another vital foundation for automation using python, 
+anything that requires reusable code will use functions.
 """
