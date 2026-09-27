@@ -41,12 +41,14 @@ for i in students_names:
 ============================================
 A MISTAKE I MADE (or one I want to avoid)
 ============================================
-[what's something confusing or easy to get wrong
-about this topic?]
-
+I mistake I always made with loops is not knowing how to properly use "for loops".
+There was a time where I never understood using it until I realized it's the most
+simple way to iterate in a list.
 
 ============================================
 HOW THIS CONNECTS TO SOMETHING ELSE
 ============================================
-[optional]
+Loops is the backbone of automation, you can tell a certain part of your code to run again and again
+like in the file sorting activity where I programmed it to keep running to scan the items inside
+the directory letting me create a list of the items.
 """
