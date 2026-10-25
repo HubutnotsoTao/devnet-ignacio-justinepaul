@@ -1,16 +1,22 @@
-import requests as rq
-import random as rdm
-import json as jason
+#Made by Justine Paul T. Ignacio
+import requests as rqs
+import random as rd
 
-pokemon_1 = rq.get("https://pokeapi.co/api/v2/pokemon/rayquaza")
-pokemon_2 = rq.get("https://pokeapi.co/api/v2/pokemon/entei")
-pokemon_3 = rq.get("https://pokeapi.co/api/v2/pokemon/gengar")
-pokemon_4 = rq.get("https://pokeapi.co/api/v2/pokemon/pikachu")
-pokemon_5 = rq.get("https://pokeapi.co/api/v2/pokemon/blastoise")
+#List of pokemons in the guessing game
+pokemon_pool = ["blastoise","rayquaza","charizard","entei","dialga","palkia","gyarados","dragonite"]
 
-pokemon_pool = [{pokemon_1.json()},{pokemon_2.json()},{pokemon_3.json()},{pokemon_4.json()},{pokemon_5.json()}]
-rdm.shuffle(pokemon_pool) 
-random_pokemon = pokemon_pool[:1]
-guess_pokemon = (random_pokemon)
+#Generate a number based on the length of the list -1 to account for index 0
+random_choice = rd.randint(0, len(pokemon_pool) - 1)
+random_pokemon = pokemon_pool[random_choice]
 
-print (guess_pokemon)
+#Get the pokemon information via pokeapi requests based on random pokemon
+get_pokemon = rqs.get(f"https://pokeapi.co/api/v2/pokemon/{random_pokemon}")
+pokemon = get_pokemon.json()
+
+name = pokemon["name"]
+height = pokemon["height"]
+weight = pokemon["weight"]
+
+print (name)
+print (height)
+print (weight)
