@@ -39,15 +39,18 @@ def pokemon_guessing_game():
 
         if user_guess == pokemon_name:
             print(f"===Congratulations your guess is correct!===\nThe pokemon is\nName: {pokemon_name}\n{pokemon_weight/10} KG\nHeight: {pokemon_height} M")
-            
             while True:
-                user_continuation = int(input("[1]Do you want to guess again?\n[2]Exit to menu\nYour choice: "))
-                if user_continuation == 1:
-                    return pokemon_guessing_game()
-                elif user_continuation == 2:
-                    return user_menu
-                else:
-                    print("Please select a valid input!")
+                try:
+                    while True:
+                        user_continuation = int(input("[1]Do you want to guess again?\n[2]Exit to menu\nYour choice: "))
+                        if user_continuation == 1:
+                            return pokemon_guessing_game()
+                        elif user_continuation == 2:
+                            return user_menu
+                        else:
+                            print("Please select a valid input!")
+                except ValueError:
+                            print("Invalid input! Please enter a number.")        
         else:
             print("===Your guess was incorrect!===")
             while True:
@@ -55,12 +58,11 @@ def pokemon_guessing_game():
                 if user_continuation == 1:
                     break
                 elif user_continuation == 2:
-                    print(f"The pokemon was {pokemon_name}.\nBetter luck next time!")
-                    return user_menu()
+                    print(f"===User has yielded===\nThe pokemon was {pokemon_name}.\nBetter luck next time!")
+                    return False
                 else:
-                    print("Please select a valid option!")\
-        
-                
+                    print("Please select a valid option!")              
+    return user_menu
 
 def main_loop():
     while True:
