@@ -4,14 +4,18 @@ import random as rd
 
 #User interface
 def user_menu():
-    user_input = int(input("Select your choice:\n[1]Play the guessing game!\n[2]Exit\nYour choice: "))
-    if user_input == 1:
-        pokemon_guessing_game()
-    elif user_input == 2:
-        print("See you again!")
-        return False
-    else:
-        print("Please enter a valid choice!")
+    while True:
+        try:
+            user_input = int(input("===User Menu===\nSelect your choice:\n[1]Play the guessing game!\n[2]Exit\nYour choice: "))
+            if user_input == 1:
+                pokemon_guessing_game()
+            elif user_input == 2:
+                print("See you again!")
+                return False
+            else:
+                print("Please enter a valid choice!")
+        except ValueError:
+            print("Invalid input! Please enter a number.")
 
 def pokemon_guessing_game():
     #List of pokemons in the guessing game
@@ -25,12 +29,38 @@ def pokemon_guessing_game():
     get_pokemon = rqs.get(f"https://pokeapi.co/api/v2/pokemon/{random_pokemon}")
     pokemon = get_pokemon.json()
 
-    name = pokemon["name"]
-    height = pokemon["height"]
-    weight = pokemon["weight"]
+    pokemon_name = pokemon["name"]
+    pokemon_height = pokemon["height"]
+    pokemon_weight = pokemon["weight"]
 
-    print(f"{name}{weight}{height}")
-    return user_menu()
+    while True:
+        print(f"===Welcome to Who's That Pokemon!===\n Your mystery pokemon weighs in at {pokemon_weight/10}kg and is {pokemon_height}m tall.")
+        user_guess = input("Guess the pokemon!: ").strip().lower()
+
+        if user_guess == pokemon_name:
+            print(f"===Congratulations your guess is correct!===\nThe pokemon is\nName: {pokemon_name}\n{pokemon_weight/10} KG\nHeight: {pokemon_height} M")
+            
+            while True:
+                user_continuation = int(input("[1]Do you want to guess again?\n[2]Exit to menu\nYour choice: "))
+                if user_continuation == 1:
+                    return pokemon_guessing_game()
+                elif user_continuation == 2:
+                    return user_menu
+                else:
+                    print("Please select a valid input!")
+        else:
+            print("===Your guess was incorrect!===")
+            while True:
+                user_continuation = int(input("[1]Keep Guessing?\n[2]Yield\nYour choice: "))
+                if user_continuation == 1:
+                    break
+                elif user_continuation == 2:
+                    print(f"The pokemon was {pokemon_name}.\nBetter luck next time!")
+                    return user_menu()
+                else:
+                    print("Please select a valid option!")\
+        
+                
 
 def main_loop():
     while True:
